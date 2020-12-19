@@ -8,15 +8,20 @@ const Calculator = () => {
   const [currTerm, setCurrTerm] = useState('currTerm');
   const [newTerm, setNewTerm] = useState('newTerm');
 
-  const handleChanges = e => {};
+  const handleChange = e => {
+    //   https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
+    console.log(`${e.target.id} => ${e.target.value}`);
+    // set[e.target.id](e.target.val);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
+    return <h5>Submitted</h5>;
   };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='l_calc_form'>
           <div className='l_calc_form_header'>
             <h4>Current Loan Info</h4>
@@ -27,7 +32,7 @@ const Calculator = () => {
             id='currTerm'
             name='currTerm'
             value={currTerm}
-            onChange={() => setCurrTerm}
+            onChange={handleChange}
           />
           <label htmlFor='currInt'>Current Loan Interest</label>
           <input
@@ -35,7 +40,7 @@ const Calculator = () => {
             id='currInt'
             name='currInt'
             value={currInt}
-            onChange={() => setCurrInt}
+            onChange={handleChange}
           />
           <label htmlFor='loanBal'>Current Loan Balance</label>
           <input
@@ -43,7 +48,7 @@ const Calculator = () => {
             id='loanBal'
             name='loanBal'
             value={loanBal}
-            onChange={() => setLoanBal}
+            onChange={handleChange}
           />
           <label htmlFor='currPmt'>Current Monthly Payment</label>
           <input
@@ -51,7 +56,7 @@ const Calculator = () => {
             id='currPmt'
             name='currPmt'
             value={currPmt}
-            onChange={() => setCurrPmt}
+            onChange={handleChange}
           />
         </div>
         <div className='r_calc_form'>
@@ -65,7 +70,7 @@ const Calculator = () => {
           id='newInt'
           name='newInt'
           value={newInt}
-          onChange={() => setNewInt}
+          onChange={handleChange}
         />
 
         <label htmlFor='newTerm'>New Loan Term</label>
@@ -74,10 +79,12 @@ const Calculator = () => {
           id='newTerm'
           name='newTerm'
           value={newTerm}
-          onChange={() => setNewTerm}
+          onChange={handleChange}
         />
         <div className='btn-div'>
-          <button className='calc-btn'>Calculate</button>
+          <button className='calc-btn' type='submit' value='Submit'>
+            Calculate
+          </button>
         </div>
       </form>
     </div>
